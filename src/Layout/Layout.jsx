@@ -1,17 +1,15 @@
 import { Outlet } from "react-router-dom";
+import NavMenu from "../components/NavMenu";
+import Navbar from "../components/Navbar";
 
 function Layout() {
   return (
     <div className="flex h-screen flex-col items-center justify-between text-center">
-      <header>
-        <h1 className="text-3xl font-bold ">Header</h1>
-      </header>
+      <Navbar />
 
       <Outlet />
 
-      <footer>
-        <h1 className="text-3xl font-bold ">Footer</h1>
-      </footer>
+      <NavMenu />
     </div>
   );
 }
