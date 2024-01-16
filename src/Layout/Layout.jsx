@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 function Layout() {
   return (
-    <div className="flex h-screen flex-col items-center justify-between text-center">
+    <div className="flex h-screen flex-col justify-between text-center">
       <Navbar />
 
       <Outlet />

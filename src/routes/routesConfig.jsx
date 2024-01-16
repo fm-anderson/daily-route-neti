@@ -1,4 +1,5 @@
 import Layout from "../Layout/Layout";
+import DailyRoute from "../pages/DailyRoute";
 import Error from "../pages/Error";
 import Home from "../pages/home";
 
@@ -23,8 +24,8 @@ export const routesConfig = [
         errorElement: <Error />,
       },
       {
-        path: "dashboard",
-        // element: <Dashboard />,
+        path: "route",
+        element: <DailyRoute />,
         // loader: ,
         // action: ,
         errorElement: <Error />,
