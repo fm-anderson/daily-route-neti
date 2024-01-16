@@ -1,7 +1,18 @@
 import Layout from "../Layout/Layout";
-import DailyRoute from "../pages/DailyRoute";
 import Error from "../pages/Error";
-import Home from "../pages/home";
+import Home from "../pages/Home";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
+export async function homeLoader() {
+  let data;
+  try {
+    const response = await fetch(baseUrl);
+    data = await response.json();
+  } catch (err) {
+    console.log("Error: ", err);
+  }
+  return data;
+}
 
 export const routesConfig = [
   {
@@ -12,22 +23,7 @@ export const routesConfig = [
       {
         index: true,
         element: <Home />,
-        // loader: ,
-        // action: ,
-        errorElement: <Error />,
-      },
-      {
-        path: "login",
-        // element: <Login />,
-        // loader: ,
-        // action: ,
-        errorElement: <Error />,
-      },
-      {
-        path: "route",
-        element: <DailyRoute />,
-        // loader: ,
-        // action: ,
+        loader: homeLoader,
         errorElement: <Error />,
       },
     ],

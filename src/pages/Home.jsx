@@ -1,7 +1,9 @@
+import DailyRoute from "../components/DailyRoute";
+
 function Home() {
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">React Starter</h1>
+      <DailyRoute />
     </main>
   );
 }

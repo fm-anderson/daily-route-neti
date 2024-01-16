@@ -45,8 +45,6 @@ function Stop() {
                 INVOICE
               </a>
             </p>
-
-            <div className="card-actions justify-end"></div>
           </div>
         </div>
       </div>
