@@ -1,13 +1,13 @@
 import { handleServices, handleAddress, handlePhone } from "../utils/helper";
 
-function Stop({ ...item }) {
+function Stop({ displayIndex, ...item }) {
   const services = handleServices(item.service);
 
   return (
     <div className="collapse justify-center rounded-none bg-base-300">
       <input type="checkbox" />
       <div className="collapse-title text-xl font-medium">
-        <p>{`${item.index} - ${handleAddress(item.address)}`}</p>
+        <p>{`${displayIndex} - ${handleAddress(item.address)}`}</p>
       </div>
 
       <div className="collapse-content">

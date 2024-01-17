@@ -19,3 +19,9 @@ export function handleAddress(address) {
 export function handlePhone(str) {
   return str.replace(/\s+/g, "");
 }
+
+export const formatDate = (offset) => {
+  const date = new Date();
+  date.setDate(date.getDate() + offset);
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+};

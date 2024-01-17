@@ -24,7 +24,6 @@ export async function signin(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log("user logged in: ", user);
     })
     .catch((error) => {
       console.error("Signin error: ", error.code, error.message);

@@ -2,12 +2,11 @@ import Layout from "../Layout/Layout";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
-
 export async function homeLoader() {
   let data;
+
   try {
-    const response = await fetch(baseUrl);
+    const response = await fetch(import.meta.env.VITE_BASE_URL);
     const resData = await response.json();
     data = resData.data.filter((item) => item && item.invoice);
   } catch (err) {

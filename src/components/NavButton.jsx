@@ -1,12 +1,8 @@
-function NavButton({ size, date = false }) {
-  const formatDate = (offset) => {
-    const date = new Date();
-    date.setDate(date.getDate() + offset);
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  };
+import { formatDate } from "../utils/helper";
 
+function NavButton({ size, date, setSelectedDate }) {
   return (
-    <button>
+    <button onClick={() => setSelectedDate(formatDate(date))}>
       <span
         className={`btm-nav-label text-${size} uppercase ${
           date === 0 && "font-bold"
