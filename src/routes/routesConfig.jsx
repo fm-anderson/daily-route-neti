@@ -2,7 +2,7 @@ import Layout from "../Layout/Layout";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 
-export async function homeLoader() {
+async function homeLoader() {
   let data;
 
   try {
