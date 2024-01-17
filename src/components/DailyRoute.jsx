@@ -1,5 +1,5 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
-import Stop from "../pages/Stop";
+import Stop from "./Stop";
 
 function DailyRoute() {
   const data = useLoaderData();
