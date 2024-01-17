@@ -26,7 +26,10 @@ function Layout() {
           <div className="flex h-screen flex-col justify-between text-center">
             <Navbar />
             <Outlet context={{ selectedDate }} />
-            <NavMenu setSelectedDate={setSelectedDate} />
+            <NavMenu
+              setSelectedDate={setSelectedDate}
+              selectedDate={selectedDate}
+            />
           </div>
         </>
       ) : (

@@ -4,14 +4,14 @@ function Stop({ displayIndex, ...item }) {
   const services = handleServices(item.service);
 
   return (
-    <div className="collapse justify-center rounded-none bg-base-300">
+    <div className="collapse justify-center bg-base-300">
       <input type="checkbox" />
       <div className="collapse-title text-xl font-medium">
         <p>{`${displayIndex} - ${handleAddress(item.address)}`}</p>
       </div>
 
       <div className="collapse-content">
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-[22rem] bg-base-100">
           <div className="card-body text-left text-lg">
             <h2 className="font-bold">
               {`${item.name} -`}{" "}
