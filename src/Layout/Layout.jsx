@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import Login from "../components/Login";
-import Navbar from "../components/Navbar";
-import NavMenu from "../components/NavMenu";
-import { formatDate } from "../utils/helper";
 import { auth } from "../firebase/configuration";
+import { formatDate } from "../utils/helper";
+import NavMenu from "../components/NavMenu";
+import Navbar from "../components/Navbar";
+import Login from "../components/Login";
 
 function Layout() {
   const [selectedDate, setSelectedDate] = useState(formatDate(0));

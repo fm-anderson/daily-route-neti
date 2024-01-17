@@ -11,7 +11,7 @@ function DailyRoute() {
       {filteredData.length === 0 ? (
         <div className="flex h-full items-center justify-center">
           <p className="text-2xl font-semibold">
-            No stops scheduled for {selectedDate}.
+            No jobs scheduled for {selectedDate}.
           </p>
         </div>
       ) : (

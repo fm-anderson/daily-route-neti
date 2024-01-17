@@ -15,7 +15,6 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       await signin(email, password);
     } catch (error) {

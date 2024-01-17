@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 
 async function homeLoader() {
   let data;
-
   try {
     const response = await fetch(import.meta.env.VITE_BASE_URL);
     const resData = await response.json();
