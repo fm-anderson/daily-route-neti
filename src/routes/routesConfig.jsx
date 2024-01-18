@@ -24,6 +24,7 @@ export const routesConfig = [
         index: true,
         element: <Home />,
         loader: homeLoader,
+        id: "home",
         errorElement: <Error />,
       },
     ],

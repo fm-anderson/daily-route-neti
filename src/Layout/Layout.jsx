@@ -6,6 +6,7 @@ import { formatDate } from "../utils/helper";
 import NavMenu from "../components/NavMenu";
 import Navbar from "../components/Navbar";
 import Login from "../components/Login";
+import Overview from "../components/Overview";
 
 function Layout() {
   const [selectedDate, setSelectedDate] = useState(formatDate(0));
@@ -25,6 +26,7 @@ function Layout() {
         <>
           <div className="m-auto flex flex-col justify-between text-center md:max-w-sm">
             <Navbar />
+            <Overview selectedDate={selectedDate} />
             <div className="mt-3">
               <Outlet context={{ selectedDate }} />
             </div>

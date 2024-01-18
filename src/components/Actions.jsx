@@ -1,8 +1,14 @@
 import { handlePhone } from "../utils/helper";
 
-function Actions({ name, address, phone, invoice, displayIndex }) {
+function Actions({ name, address, phone, invoice, service, displayIndex }) {
+  const isSameDay = service.includes("Same Day");
+
   return (
-    <div className="-mb-3 flex justify-between gap-6 rounded-t-xl border-b-4 border-b-base-200 bg-base-300 px-3 py-3">
+    <div
+      className={`-mb-3 flex justify-between gap-6 rounded-t-xl border-b-4 border-b-base-200 px-3 py-3 ${
+        isSameDay ? "bg-accent" : "bg-base-300"
+      }`}
+    >
       <span className="flex justify-start">
         <h1 className="text-lg font-light">{`${displayIndex} - ${name}`}</h1>
       </span>
