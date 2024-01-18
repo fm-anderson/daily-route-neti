@@ -23,9 +23,11 @@ function Layout() {
     <>
       {isLoggedIn ? (
         <>
-          <div className="flex h-screen flex-col justify-between text-center">
+          <div className="flex flex-col justify-between text-center">
             <Navbar />
-            <Outlet context={{ selectedDate }} />
+            <div className="mt-3">
+              <Outlet context={{ selectedDate }} />
+            </div>
             <NavMenu
               setSelectedDate={setSelectedDate}
               selectedDate={selectedDate}
