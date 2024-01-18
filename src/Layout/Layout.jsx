@@ -23,7 +23,7 @@ function Layout() {
     <>
       {isLoggedIn ? (
         <>
-          <div className="flex flex-col justify-between text-center">
+          <div className="m-auto flex flex-col justify-between text-center md:max-w-sm">
             <Navbar />
             <div className="mt-3">
               <Outlet context={{ selectedDate }} />

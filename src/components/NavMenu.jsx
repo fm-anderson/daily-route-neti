@@ -3,7 +3,7 @@ import NavButton from "./NavButton";
 function NavMenu({ setSelectedDate, selectedDate }) {
   return (
     <header>
-      <div className="btm-nav bg-base-200">
+      <div className="btm-nav m-auto bg-base-200 md:max-w-sm">
         <NavButton
           size={"xs"}
           date={-2}
