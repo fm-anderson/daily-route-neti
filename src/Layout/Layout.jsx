@@ -25,14 +25,14 @@ function Layout() {
     <>
       {isLoggedIn ? (
         <>
-          <div className="m-auto flex flex-col justify-between text-center md:max-w-sm">
+          <div className="flex flex-col text-center md:max-w-sm">
             <Navbar />
             <Overview
               selectedDate={selectedDate}
               setListView={setListView}
               listView={listView}
             />
-            <div className="mt-6">
+            <div className="mb-20 mt-6">
               <Outlet context={{ selectedDate, listView }} />
             </div>
             <NavMenu

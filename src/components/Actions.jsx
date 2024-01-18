@@ -5,7 +5,7 @@ function Actions({ name, address, phone, invoice, service, displayIndex }) {
 
   return (
     <div
-      className={`-mb-3 flex justify-between gap-6 rounded-t-xl border-b-4 border-b-base-200 px-3 py-3 ${
+      className={`-mb-3 flex justify-between gap-6 rounded-t-2xl border-b-4 border-b-base-200 px-3 py-3 ${
         isSameDay ? "bg-accent" : "bg-base-300"
       }`}
     >
