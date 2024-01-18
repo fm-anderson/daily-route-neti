@@ -7,6 +7,7 @@ import Overview from "../components/Overview";
 import NavMenu from "../components/NavMenu";
 import Navbar from "../components/Navbar";
 import Login from "../components/Login";
+import ModalLogout from "../components/ModalLogout";
 
 function Layout() {
   const [selectedDate, setSelectedDate] = useState(formatDate(0));
@@ -40,6 +41,7 @@ function Layout() {
               selectedDate={selectedDate}
             />
           </div>
+          <ModalLogout />
         </>
       ) : (
         <div className="flex h-screen flex-col justify-center text-center">
