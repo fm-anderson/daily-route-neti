@@ -1,52 +1,42 @@
-import { handleServices, handleAddress, handlePhone } from "../utils/helper";
+import { useState } from "react";
+import { handleAddress } from "../utils/helper";
+import ExpandCollapse from "./ExpandCollapse";
+import Actions from "./Actions";
+import Card from "./Card";
 
 function Stop({ displayIndex, ...item }) {
-  const services = handleServices(item.service);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
 
   return (
-    <div className="collapse justify-center bg-base-300">
-      <input type="checkbox" />
-      <div className="collapse-title text-xl font-medium">
-        <p>{`${displayIndex} - ${handleAddress(item.address)}`}</p>
-      </div>
+    <>
+      {!isChecked && <Actions displayIndex={displayIndex} {...item} />}
+      <div
+        className={`collapse justify-center bg-base-300 ${
+          !isChecked && "rounded-t-none"
+        }`}
+      >
+        <input
+          type="checkbox"
+          onChange={handleCheckboxChange}
+          checked={isChecked}
+        />
+        <div className="collapse-title flex justify-between text-xl font-medium">
+          <span className="flex gap-2">
+            {isChecked && <p>{displayIndex}</p>}
+            <p>{`${handleAddress(item.address)}`}</p>
+          </span>
+          <ExpandCollapse isChecked={isChecked} />
+        </div>
 
-      <div className="collapse-content">
-        <div className="card w-[22rem] bg-base-100">
-          <div className="card-body text-left text-lg">
-            <h2 className="font-bold">
-              {`${item.name} -`}{" "}
-              <a href={`tel:${handlePhone(item.phone)}`}>{item.phone}</a>
-            </h2>
-
-            <p>{`${item.date}, ${item.time}`}</p>
-
-            <p className="text-sm">
-              <a
-                href={`http://maps.google.com/?q=${item.address}`}
-                target="_blank"
-              >
-                {item.address}
-              </a>
-            </p>
-
-            <ul className="ml-4 list-disc">
-              {services.map((serviceItem, i) => (
-                <li key={i}>
-                  <p>{serviceItem}</p>
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-lg font-bold">
-              <span>{`Total: ${item.payment}`}</span> -{" "}
-              <a href={item.invoice} target="_blank" className="tracking-wider">
-                INVOICE
-              </a>
-            </p>
-          </div>
+        <div className="collapse-content">
+          <Card {...item} />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
