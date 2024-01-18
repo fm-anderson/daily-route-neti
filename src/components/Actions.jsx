@@ -1,4 +1,4 @@
-import { handleAddress, handlePhone } from "../utils/helper";
+import { handleAddress, handlePhone, removeAptNumber } from "../utils/helper";
 
 function Actions({ displayIndex, listView, ...item }) {
   const isSameDay = item.service.includes("Same Day");
@@ -17,7 +17,7 @@ function Actions({ displayIndex, listView, ...item }) {
 
       <span className="flex gap-5">
         <a
-          href={`http://maps.google.com/?q=${item.address}`}
+          href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
           target="_blank"
           className="text-neutral"
         >

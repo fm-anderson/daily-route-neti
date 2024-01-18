@@ -26,9 +26,9 @@ export function formatDate(offset) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export function handleSameDay(filteredData, handleServices) {
-  return filteredData.some((item) => {
-    const services = handleServices(item.service);
+export function handleSameDay(data, formatter) {
+  return data.some((item) => {
+    const services = formatter(item.service);
     return services.includes("Same Day");
   });
 }
@@ -38,11 +38,11 @@ export function milesCount(data) {
   return firstEntryWithMiles ? firstEntryWithMiles.miles : "0";
 }
 
-export function mountCount(filteredData) {
+export function mountCount(data) {
   let fixedMountCount = 0;
   let fullMotionCount = 0;
 
-  filteredData.forEach((item) => {
+  data.forEach((item) => {
     if (item.service.includes("Fixed Mount")) {
       fixedMountCount += 1;
     }
@@ -57,7 +57,11 @@ export function mountCount(filteredData) {
   };
 }
 
-export function createMapsRoute(filteredData) {
+export function removeAptNumber(address) {
+  return address.replace(/\s\(.*?\)/, "");
+}
+
+export function createMapsRoute(data) {
   const baseUrl = "https://www.google.com/maps/dir/";
   const startingAddress = import.meta.env.VITE_STARTING_ADDRESS;
 
@@ -65,9 +69,7 @@ export function createMapsRoute(filteredData) {
     return address.replace(/\s\(.*?\)/, "").replace(/\s/g, "+");
   };
 
-  const route = filteredData
-    .map((item) => formatAddress(item.address))
-    .join("/");
+  const route = data.map((item) => formatAddress(item.address)).join("/");
 
   return baseUrl + startingAddress + "/" + route;
 }
