@@ -6,6 +6,7 @@ import {
   handleSameDay,
   handleServices,
   milesCount,
+  createMapsRoute,
 } from "../utils/helper";
 
 function Overview({ selectedDate, setListView, listView }) {
@@ -13,6 +14,7 @@ function Overview({ selectedDate, setListView, listView }) {
   const filteredData = data.filter((item) => item.date === selectedDate);
   const [isSameDay, setIsSameDay] = useState(false);
   const totalMiles = milesCount(filteredData);
+  const mapsRoute = createMapsRoute(filteredData);
 
   const { fixedMountCount, fullMotionCount } = mountCount(filteredData);
 
@@ -40,9 +42,13 @@ function Overview({ selectedDate, setListView, listView }) {
             </p>
           )}
         </span>
-        <p className="text-md badge badge-ghost bg-secondary px-4 py-2 tracking-wider text-white">
-          {`${selectedDate}, ${new Date().getFullYear()}`}
-        </p>
+        <a
+          href={mapsRoute}
+          target="_blank"
+          className="text-md badge badge-ghost bg-secondary px-4 py-2 tracking-wider text-white no-underline"
+        >
+          {`route: ${selectedDate}`}
+        </a>
       </div>
       <div className="mx-1 grid grid-cols-2 gap-3">
         <Stats value={`${filteredData.length} Clients`} />

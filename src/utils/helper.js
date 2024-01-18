@@ -56,3 +56,18 @@ export function mountCount(filteredData) {
     fullMotionCount,
   };
 }
+
+export function createMapsRoute(filteredData) {
+  const baseUrl = "https://www.google.com/maps/dir/";
+  const startingAddress = import.meta.env.VITE_STARTING_ADDRESS;
+
+  const formatAddress = (address) => {
+    return address.replace(/\s\(.*?\)/, "").replace(/\s/g, "+");
+  };
+
+  const route = filteredData
+    .map((item) => formatAddress(item.address))
+    .join("/");
+
+  return baseUrl + startingAddress + "/" + route;
+}
