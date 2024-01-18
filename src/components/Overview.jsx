@@ -32,7 +32,7 @@ function Overview({ selectedDate, setListView, listView }) {
             className="badge bg-base-200 px-3 py-1 tracking-wider"
             onClick={toggleView}
           >
-            {listView ? "list" : "cards"}
+            {listView ? "cards" : "list"}
           </button>
           {isSameDay && (
             <p className="badge bg-accent px-3 py-1 tracking-wider text-white">

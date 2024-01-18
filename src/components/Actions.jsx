@@ -1,21 +1,23 @@
-import { handlePhone } from "../utils/helper";
+import { handleAddress, handlePhone } from "../utils/helper";
 
-function Actions({ name, address, phone, invoice, service, displayIndex }) {
-  const isSameDay = service.includes("Same Day");
+function Actions({ displayIndex, listView, ...item }) {
+  const isSameDay = item.service.includes("Same Day");
 
   return (
     <div
-      className={`-mb-3 flex justify-between gap-6 rounded-t-2xl border-b-4 border-b-base-200 px-3 py-3 ${
-        isSameDay ? "bg-accent" : "bg-base-300"
-      }`}
+      className={`flex justify-between border-b-base-200 px-8 py-3
+      ${isSameDay ? "bg-accent" : "bg-base-300"}
+      ${listView ? "rounded-2xl" : "-mb-3 rounded-t-2xl border-b-4"}`}
     >
       <span className="flex justify-start">
-        <h1 className="text-lg font-light">{`${displayIndex} - ${name}`}</h1>
+        <h1 className="text-lg font-light">{`${displayIndex} - ${
+          listView ? handleAddress(item.address) : item.name
+        }`}</h1>
       </span>
 
       <span className="flex gap-5">
         <a
-          href={`http://maps.google.com/?q=${address}`}
+          href={`http://maps.google.com/?q=${item.address}`}
           target="_blank"
           className="text-neutral"
         >
@@ -29,7 +31,7 @@ function Actions({ name, address, phone, invoice, service, displayIndex }) {
           </svg>
         </a>
 
-        <a href={`tel:${handlePhone(phone)}`} className="text-neutral">
+        <a href={`tel:${handlePhone(item.phone)}`} className="text-neutral">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -41,7 +43,7 @@ function Actions({ name, address, phone, invoice, service, displayIndex }) {
           </svg>
         </a>
 
-        <a href={invoice} className="text-neutral" target="_blank">
+        <a href={item.invoice} className="text-neutral" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
