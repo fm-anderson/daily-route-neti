@@ -20,8 +20,34 @@ export function handlePhone(str) {
   return str.replace(/\s+/g, "");
 }
 
-export const formatDate = (offset) => {
+export function formatDate(offset) {
   const date = new Date();
   date.setDate(date.getDate() + offset);
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-};
+}
+
+export function handleSameDay(filteredData, handleServices) {
+  return filteredData.some((item) => {
+    const services = handleServices(item.service);
+    return services.includes("Same Day");
+  });
+}
+
+export function mountCount(filteredData) {
+  let fixedMountCount = 0;
+  let fullMotionCount = 0;
+
+  filteredData.forEach((item) => {
+    if (item.service.includes("Fixed Mount")) {
+      fixedMountCount += 1;
+    }
+    if (item.service.includes("Full Motion Mount")) {
+      fullMotionCount += 1;
+    }
+  });
+
+  return {
+    fixedMountCount,
+    fullMotionCount,
+  };
+}
