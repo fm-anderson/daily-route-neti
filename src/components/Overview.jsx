@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { useRouteLoaderData } from "react-router-dom";
 import Stats from "./Stats";
-import { mountCount, handleSameDay, handleServices } from "../utils/helper";
+import {
+  mountCount,
+  handleSameDay,
+  handleServices,
+  milesCount,
+} from "../utils/helper";
 
 function Overview({ selectedDate, setListView, listView }) {
   const data = useRouteLoaderData("home");
-  const [isSameDay, setIsSameDay] = useState(false);
   const filteredData = data.filter((item) => item.date === selectedDate);
+  const [isSameDay, setIsSameDay] = useState(false);
+  const totalMiles = milesCount(filteredData);
 
   const { fixedMountCount, fullMotionCount } = mountCount(filteredData);
 
@@ -41,7 +47,7 @@ function Overview({ selectedDate, setListView, listView }) {
       <div className="mx-1  grid grid-cols-2 gap-3">
         <Stats value={`${filteredData.length} Clients`} />
         <Stats value={`${fixedMountCount} Fixed Mount`} />
-        <Stats value={"89 miles"} />
+        <Stats value={`${totalMiles} miles`} />
         <Stats value={`${fullMotionCount} Full Motion`} />
       </div>
     </div>

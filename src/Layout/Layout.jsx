@@ -32,7 +32,7 @@ function Layout() {
               setListView={setListView}
               listView={listView}
             />
-            <div className="mt-3">
+            <div className="mt-6">
               <Outlet context={{ selectedDate, listView }} />
             </div>
             <NavMenu

@@ -33,6 +33,11 @@ export function handleSameDay(filteredData, handleServices) {
   });
 }
 
+export function milesCount(data) {
+  const firstEntryWithMiles = data.find((item) => item.miles !== "");
+  return firstEntryWithMiles ? firstEntryWithMiles.miles : "0";
+}
+
 export function mountCount(filteredData) {
   let fixedMountCount = 0;
   let fullMotionCount = 0;
