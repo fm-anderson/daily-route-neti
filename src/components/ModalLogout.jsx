@@ -4,7 +4,7 @@ function ModalLogout() {
   return (
     <>
       <input type="checkbox" id="logout-modal" className="modal-toggle" />
-      <div className="modal modal-bottom" role="dialog">
+      <div className="modal modal-bottom m-auto md:max-w-sm" role="dialog">
         <div className="modal-box">
           <span className="flex gap-3">
             <svg

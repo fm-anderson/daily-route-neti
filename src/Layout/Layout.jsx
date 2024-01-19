@@ -26,7 +26,7 @@ function Layout() {
     <>
       {isLoggedIn ? (
         <>
-          <div className="flex flex-col text-center md:max-w-sm">
+          <div className="m-auto flex flex-col text-center md:max-w-sm">
             <Navbar />
             <Overview
               selectedDate={selectedDate}

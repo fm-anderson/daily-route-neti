@@ -47,7 +47,7 @@ function Overview({ selectedDate, setListView, listView }) {
           target="_blank"
           className="text-md badge badge-ghost bg-secondary px-4 py-2 tracking-wider text-white no-underline"
         >
-          {`route: ${selectedDate}`}
+          {`Route: ${selectedDate}`}
         </a>
       </div>
       <div className="mx-1 grid grid-cols-2 gap-3">
