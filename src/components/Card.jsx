@@ -1,7 +1,8 @@
 import { handlePhone, handleServices } from "../utils/helper";
 
 function Card({ ...item }) {
-  const services = handleServices(item.service);
+  let services = handleServices(item.service);
+  services = services.filter((service) => service.toLowerCase() !== "same day");
 
   return (
     <div className="card w-[22rem] bg-base-100">

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { handleAddress } from "../utils/helper";
+import { handleAddress, handleSameDay, handleServices } from "../utils/helper";
 import ExpandCollapse from "./ExpandCollapse";
 import Actions from "./Actions";
 import Card from "./Card";
 
 function Stop({ displayIndex, listView, ...item }) {
   const [isChecked, setIsChecked] = useState(false);
+  const isSameDay = handleSameDay([item], handleServices);
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -27,7 +28,11 @@ function Stop({ displayIndex, listView, ...item }) {
             onChange={handleCheckboxChange}
             checked={isChecked}
           />
-          <div className="collapse-title flex justify-between text-xl font-medium">
+          <div
+            className={`collapse-title flex justify-between text-xl font-medium ${
+              isSameDay && isChecked && "bg-accent"
+            }`}
+          >
             <span className="flex gap-2">
               {isChecked && <p>{displayIndex}</p>}
               <p>{`${handleAddress(item.address)}`}</p>
@@ -35,7 +40,7 @@ function Stop({ displayIndex, listView, ...item }) {
             <ExpandCollapse isChecked={isChecked} />
           </div>
 
-          <div className="collapse-content">
+          <div className={`collapse-content ${isSameDay && "bg-accent"}`}>
             <Card {...item} />
           </div>
         </div>

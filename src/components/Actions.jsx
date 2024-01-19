@@ -1,7 +1,13 @@
-import { handleAddress, handlePhone, removeAptNumber } from "../utils/helper";
+import {
+  handleAddress,
+  handlePhone,
+  handleSameDay,
+  handleServices,
+  removeAptNumber,
+} from "../utils/helper";
 
 function Actions({ displayIndex, listView, ...item }) {
-  const isSameDay = item.service.includes("Same Day");
+  const isSameDay = handleSameDay([item], handleServices);
 
   return (
     <div

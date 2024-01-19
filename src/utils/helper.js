@@ -26,10 +26,12 @@ export function formatDate(offset) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export function handleSameDay(data, formatter) {
+export function handleSameDay(data, handleServices) {
   return data.some((item) => {
-    const services = formatter(item.service);
-    return services.includes("Same Day");
+    const services = handleServices(item.service).map((service) =>
+      service.toLowerCase(),
+    );
+    return services.includes("same day");
   });
 }
 

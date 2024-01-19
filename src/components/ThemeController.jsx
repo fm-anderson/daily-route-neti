@@ -1,6 +1,6 @@
 function ThemeController() {
   return (
-    <label className="swap-rotate swap">
+    <label className="swap swap-rotate">
       <input type="checkbox" className="theme-controller" value="dim" />
       <svg
         className="swap-on h-10 w-10 fill-current"

@@ -51,6 +51,7 @@ function Overview({ selectedDate, setListView, listView }) {
         </a>
       </div>
       <div className="mx-1 grid grid-cols-2 gap-3">
+        {/* // TODO: Cord masking instead of Clients */}
         <Stats value={`${filteredData.length} Clients`} />
         <Stats value={`${fixedMountCount} Fixed Mount`} />
         <Stats value={`${totalMiles} miles`} />
