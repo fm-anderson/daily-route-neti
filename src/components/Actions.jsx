@@ -5,7 +5,7 @@ function Actions({ displayIndex, listView, ...item }) {
 
   return (
     <div
-      className={`flex justify-between border-b-base-200 px-8 py-3
+      className={`flex justify-between border-b-base-200 px-3 py-3
       ${isSameDay ? "bg-accent" : "bg-base-300"}
       ${listView ? "rounded-2xl" : "-mb-3 rounded-t-2xl border-b-4"}`}
     >
@@ -19,7 +19,7 @@ function Actions({ displayIndex, listView, ...item }) {
         <a
           href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
           target="_blank"
-          className="text-neutral"
+          className="text-base-content"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,10 @@ function Actions({ displayIndex, listView, ...item }) {
           </svg>
         </a>
 
-        <a href={`tel:${handlePhone(item.phone)}`} className="text-neutral">
+        <a
+          href={`tel:${handlePhone(item.phone)}`}
+          className="text-base-content"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,7 +46,7 @@ function Actions({ displayIndex, listView, ...item }) {
           </svg>
         </a>
 
-        <a href={item.invoice} className="text-neutral" target="_blank">
+        <a href={item.invoice} className="text-base-content" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
