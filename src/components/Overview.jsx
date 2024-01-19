@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useRouteLoaderData } from "react-router-dom";
 import Stats from "./Stats";
 import {
-  mountCount,
   handleSameDay,
   handleServices,
   milesCount,
   createMapsRoute,
+  itemsCount,
 } from "../utils/helper";
 
 function Overview({ selectedDate, setListView, listView }) {
@@ -16,7 +16,8 @@ function Overview({ selectedDate, setListView, listView }) {
   const totalMiles = milesCount(filteredData);
   const mapsRoute = createMapsRoute(filteredData);
 
-  const { fixedMountCount, fullMotionCount } = mountCount(filteredData);
+  const { fixedMountCount, fullMotionCount, cordMaskingCount } =
+    itemsCount(filteredData);
 
   const toggleView = () => {
     setListView((prevListView) => !prevListView);
@@ -51,11 +52,10 @@ function Overview({ selectedDate, setListView, listView }) {
         </a>
       </div>
       <div className="mx-1 grid grid-cols-2 gap-3">
-        {/* // TODO: Cord masking instead of Clients */}
-        <Stats value={`${filteredData.length} Clients`} />
         <Stats value={`${fixedMountCount} Fixed Mount`} />
-        <Stats value={`${totalMiles} miles`} />
+        <Stats value={`${cordMaskingCount} Cord Masking`} />
         <Stats value={`${fullMotionCount} Full Motion`} />
+        <Stats value={`${totalMiles} miles`} />
       </div>
     </div>
   );

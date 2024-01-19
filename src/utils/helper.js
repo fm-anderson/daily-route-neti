@@ -2,6 +2,10 @@ export function handleServices(str) {
   return str.split(",").map((service) => service.trim());
 }
 
+export function lowercaseServices(str) {
+  return str.split(",").map((service) => service.trim().toLowerCase());
+}
+
 export function handleAddress(address) {
   const regex = /(\w+[\s\w]*),\s*(\w{2})\s*\d{5}(?:\s*\(Apt\s*(\d+)\))?/;
   const matches = address.match(regex);
@@ -26,11 +30,9 @@ export function formatDate(offset) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-export function handleSameDay(data, handleServices) {
+export function handleSameDay(data) {
   return data.some((item) => {
-    const services = handleServices(item.service).map((service) =>
-      service.toLowerCase(),
-    );
+    const services = lowercaseServices(item.service);
     return services.includes("same day");
   });
 }
@@ -40,22 +42,28 @@ export function milesCount(data) {
   return firstEntryWithMiles ? firstEntryWithMiles.miles : "0";
 }
 
-export function mountCount(data) {
+export function itemsCount(data) {
   let fixedMountCount = 0;
   let fullMotionCount = 0;
+  let cordMaskingCount = 0;
 
   data.forEach((item) => {
-    if (item.service.includes("Fixed Mount")) {
+    const services = lowercaseServices(item.service);
+    if (services.includes("fixed mount")) {
       fixedMountCount += 1;
     }
-    if (item.service.includes("Full Motion Mount")) {
+    if (services.includes("full motion mount")) {
       fullMotionCount += 1;
+    }
+    if (services.includes("cord masking")) {
+      cordMaskingCount += 1;
     }
   });
 
   return {
     fixedMountCount,
     fullMotionCount,
+    cordMaskingCount,
   };
 }
 
