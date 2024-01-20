@@ -5,32 +5,28 @@ function NavMenu({ setSelectedDate, selectedDate }) {
     <header>
       <div className="btm-nav m-auto bg-base-200 md:max-w-sm">
         <NavButton
-          size={"xs"}
-          date={-2}
-          setSelectedDate={setSelectedDate}
-          selectedDate={selectedDate}
-        />
-        <NavButton
-          size={"md"}
-          date={-1}
-          setSelectedDate={setSelectedDate}
-          selectedDate={selectedDate}
-        />
-        <NavButton
           size={"lg"}
           date={0}
           setSelectedDate={setSelectedDate}
           selectedDate={selectedDate}
         />
         <NavButton
-          size={"md"}
           date={1}
           setSelectedDate={setSelectedDate}
           selectedDate={selectedDate}
         />
         <NavButton
-          size={"xs"}
           date={2}
+          setSelectedDate={setSelectedDate}
+          selectedDate={selectedDate}
+        />
+        <NavButton
+          date={3}
+          setSelectedDate={setSelectedDate}
+          selectedDate={selectedDate}
+        />
+        <NavButton
+          date={4}
           setSelectedDate={setSelectedDate}
           selectedDate={selectedDate}
         />
