@@ -1,6 +1,6 @@
 import { formatDate } from "../utils/helper";
 
-function NavButton({ size, date, setSelectedDate, selectedDate }) {
+function NavButton({ size, date, setSelectedDate, selectedDate, isEmpty }) {
   return (
     <button
       onClick={() => setSelectedDate(formatDate(date))}
@@ -13,6 +13,9 @@ function NavButton({ size, date, setSelectedDate, selectedDate }) {
       >
         {date ? formatDate(date) : "Today"}
       </span>
+      <div
+        className={`badge badge-xs ${isEmpty ? "badge" : "badge-secondary"}`}
+      ></div>
     </button>
   );
 }
