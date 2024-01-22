@@ -2,7 +2,7 @@ import Layout from "../Layout/Layout";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 
-async function homeLoader() {
+async function layoutLoader() {
   let data;
   try {
     const response = await fetch(import.meta.env.VITE_BASE_URL);
@@ -18,13 +18,12 @@ export const routesConfig = [
   {
     path: "/",
     element: <Layout />,
+    loader: layoutLoader,
     errorElement: <Error />,
     children: [
       {
         index: true,
         element: <Home />,
-        loader: homeLoader,
-        id: "home",
         errorElement: <Error />,
       },
     ],

@@ -1,9 +1,9 @@
-import { useRouteLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import NavButton from "./NavButton";
 import { formatDate } from "../utils/helper";
 
 function NavMenu({ setSelectedDate, selectedDate }) {
-  const data = useRouteLoaderData("home");
+  const data = useLoaderData();
 
   const isDateEmpty = (date) => {
     const formattedDate = formatDate(date);
