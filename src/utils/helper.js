@@ -37,18 +37,15 @@ export function handleSameDay(data) {
   });
 }
 
-export function milesCount(data) {
-  const firstEntryWithMiles = data.find((item) => item.miles !== "");
-  return firstEntryWithMiles ? firstEntryWithMiles.miles : "0";
-}
-
 export function itemsCount(data) {
   let fixedMountCount = 0;
   let fullMotionCount = 0;
   let cordMaskingCount = 0;
+  let milesCount = 0;
 
   data.forEach((item) => {
     const services = lowercaseServices(item.service);
+
     if (services.includes("fixed mount")) {
       fixedMountCount += 1;
     }
@@ -58,12 +55,17 @@ export function itemsCount(data) {
     if (services.includes("cord masking")) {
       cordMaskingCount += 1;
     }
+
+    if (milesCount === 0 && item.miles && item.miles !== "") {
+      milesCount = item.miles;
+    }
   });
 
   return {
     fixedMountCount,
     fullMotionCount,
     cordMaskingCount,
+    milesCount,
   };
 }
 

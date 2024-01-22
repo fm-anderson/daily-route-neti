@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/configuration";
 import { formatDate } from "../utils/helper";
-import Overview from "../components/Overview";
 import NavMenu from "../components/NavMenu";
 import Navbar from "../components/Navbar";
 import Login from "../components/Login";
 import ModalLogout from "../components/ModalLogout";
 
 function Layout() {
+  const data = useLoaderData();
   const [selectedDate, setSelectedDate] = useState(formatDate(0));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [listView, setListView] = useState(false);
@@ -28,13 +28,8 @@ function Layout() {
         <>
           <div className="m-auto flex flex-col text-center md:max-w-sm">
             <Navbar />
-            <Overview
-              selectedDate={selectedDate}
-              setListView={setListView}
-              listView={listView}
-            />
-            <div className="mb-20 mt-6">
-              <Outlet context={{ selectedDate, listView }} />
+            <div className="mb-20">
+              <Outlet context={{ selectedDate, listView, setListView, data }} />
             </div>
             <NavMenu
               setSelectedDate={setSelectedDate}

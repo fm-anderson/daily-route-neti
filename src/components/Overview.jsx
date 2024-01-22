@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
-import { useRouteLoaderData } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import Stats from "./Stats";
 import {
   handleSameDay,
   handleServices,
-  milesCount,
   createMapsRoute,
   itemsCount,
 } from "../utils/helper";
 
-function Overview({ selectedDate, setListView, listView }) {
-  const data = useRouteLoaderData("home");
-  const filteredData = data.filter((item) => item.date === selectedDate);
+function Overview() {
+  const { selectedDate, listView, setListView, data } = useOutletContext();
   const [isSameDay, setIsSameDay] = useState(false);
-  const totalMiles = milesCount(filteredData);
+  const filteredData = data.filter((item) => item.date === selectedDate);
   const mapsRoute = createMapsRoute(filteredData);
-
-  const { fixedMountCount, fullMotionCount, cordMaskingCount } =
+  const { fixedMountCount, fullMotionCount, cordMaskingCount, milesCount } =
     itemsCount(filteredData);
 
   const toggleView = () => {
@@ -55,7 +52,7 @@ function Overview({ selectedDate, setListView, listView }) {
         <Stats value={`${fixedMountCount} Fixed Mount`} />
         <Stats value={`${cordMaskingCount} Cord Masking`} />
         <Stats value={`${fullMotionCount} Full Motion`} />
-        <Stats value={`${totalMiles} miles`} />
+        <Stats value={`${milesCount} miles`} />
       </div>
     </div>
   );
