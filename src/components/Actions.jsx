@@ -27,12 +27,14 @@ function Actions({ displayIndex, listView, ...item }) {
         <IconLink
           href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
           pathData={svgPaths.navigation}
+          size={7}
         />
         <IconLink
           href={`tel:${handlePhone(item.phone)}`}
           pathData={svgPaths.phone}
+          size={7}
         />
-        <IconLink href={item.invoice} pathData={svgPaths.invoice} />
+        <IconLink href={item.invoice} pathData={svgPaths.invoice} size={7} />
       </span>
     </div>
   );
