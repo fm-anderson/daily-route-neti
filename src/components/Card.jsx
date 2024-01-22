@@ -1,4 +1,4 @@
-import { handlePhone, handleServices } from "../utils/helper";
+import { handlePhone, handleServices, removeAptNumber } from "../utils/helper";
 
 function Card({ ...item }) {
   let services = handleServices(item.service);
@@ -15,7 +15,10 @@ function Card({ ...item }) {
         <p>{`${item.date}, ${item.time}`}</p>
 
         <p className="text-sm">
-          <a href={`http://maps.google.com/?q=${item.address}`} target="_blank">
+          <a
+            href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
+            target="_blank"
+          >
             {item.address}
           </a>
         </p>
