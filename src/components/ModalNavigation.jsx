@@ -1,5 +1,5 @@
 import wazeIcon from "../assets/waze-icon.svg";
-import googleMapsIcon from "../assets/google-map-icon.svg";
+import googleMapsIcon from "../assets/google-maps-icon.svg";
 import { removeAptNumber } from "../utils/helper";
 
 function ModalNavigation({ modalAddress }) {
