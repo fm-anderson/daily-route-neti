@@ -3,12 +3,12 @@ import {
   handlePhone,
   handleSameDay,
   handleServices,
-  removeAptNumber,
 } from "../utils/helper";
 import IconLink from "./IconLink";
 import { svgPaths } from "../utils/consts";
+import SvgWrapper from "./SvgWrapper";
 
-function Actions({ displayIndex, listView, ...item }) {
+function Actions({ displayIndex, listView, setModalAddress, ...item }) {
   const isSameDay = handleSameDay([item], handleServices);
 
   return (
@@ -24,17 +24,24 @@ function Actions({ displayIndex, listView, ...item }) {
       </span>
 
       <span className="flex gap-5">
-        <IconLink
-          href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
-          pathData={svgPaths.navigation}
-          size={7}
-        />
+        <label
+          htmlFor="navigation-modal"
+          className="text-base-content"
+          onClick={() => setModalAddress(item.address)}
+        >
+          <SvgWrapper pathData={svgPaths.navigation} size={7} />
+        </label>
+
         <IconLink
           href={`tel:${handlePhone(item.phone)}`}
           pathData={svgPaths.phone}
           size={7}
         />
-        <IconLink href={item.invoice} pathData={svgPaths.invoice} size={7} />
+        <IconLink
+          href={`sms:${handlePhone(item.phone)}`}
+          pathData={svgPaths.sms}
+          size={7}
+        />
       </span>
     </div>
   );

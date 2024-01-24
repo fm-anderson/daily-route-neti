@@ -1,27 +1,44 @@
-import { handlePhone, handleServices, removeAptNumber } from "../utils/helper";
+import { svgPaths } from "../utils/consts";
+import { abbreviateName, handleServices } from "../utils/helper";
+import SvgWrapper from "./SvgWrapper";
 
-function Card({ ...item }) {
+function Card({ setCopied, ...item }) {
   let services = handleServices(item.service);
   services = services.filter((service) => service.toLowerCase() !== "same day");
+
+  const copyToClipboard = async (text) => {
+    try {
+      setCopied(true);
+      await navigator.clipboard.writeText(text);
+      setTimeout(() => setCopied(false), 700);
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
 
   return (
     <div className="card w-[22rem] bg-base-100">
       <div className="card-body text-left text-lg">
-        <h2 className="font-bold">
-          {`${item.name} -`}{" "}
-          <a href={`tel:${handlePhone(item.phone)}`}>{item.phone}</a>
-        </h2>
+        <span className="flex">
+          <p className="font-bold">
+            {`${abbreviateName(item.name)} -`} <span>{item.phone}</span>
+          </p>
+          <span onClick={() => copyToClipboard(item.phone)}>
+            <SvgWrapper pathData={svgPaths.copy} size={6} />
+          </span>
+        </span>
 
         <p>{`${item.date}, ${item.time}`}</p>
 
-        <p className="text-sm">
-          <a
-            href={`http://maps.google.com/?q=${removeAptNumber(item.address)}`}
-            target="_blank"
+        <span className="flex justify-between text-sm">
+          {item.address}
+          <span
+            className="opacity-60"
+            onClick={() => copyToClipboard(item.address)}
           >
-            {item.address}
-          </a>
-        </p>
+            <SvgWrapper pathData={svgPaths.copy} size={6} />
+          </span>
+        </span>
 
         <ul className="ml-4 list-disc">
           {services.map((item, i) => (
@@ -30,13 +47,20 @@ function Card({ ...item }) {
             </li>
           ))}
         </ul>
-
-        <p className="text-lg font-bold">
-          <span>{`Total: ${item.payment}`}</span> -{" "}
-          <a href={item.invoice} target="_blank" className="tracking-wider">
-            INVOICE
-          </a>
-        </p>
+        <span className="flex justify-between">
+          <p className="text-lg font-bold">
+            <span>{`Total: ${item.payment}`}</span> -{" "}
+            <a href={item.invoice} target="_blank" className="tracking-wider">
+              INVOICE
+            </a>
+          </p>
+          <span
+            onClick={() => copyToClipboard(item.invoice)}
+            className="text-secondary"
+          >
+            <SvgWrapper pathData={svgPaths.copy} size={6} />
+          </span>
+        </span>
       </div>
     </div>
   );

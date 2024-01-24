@@ -85,3 +85,12 @@ export function createMapsRoute(data) {
 
   return baseUrl + startingAddress + "/" + route;
 }
+
+export function abbreviateName(name) {
+  const parts = name.split(" ");
+  if (parts.length > 1) {
+    const lastNameInitial = parts[parts.length - 1][0];
+    return `${parts[0]} ${lastNameInitial}.`;
+  }
+  return name;
+}

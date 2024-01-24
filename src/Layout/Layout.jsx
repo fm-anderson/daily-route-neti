@@ -7,11 +7,13 @@ import NavMenu from "../components/NavMenu";
 import Navbar from "../components/Navbar";
 import Login from "../components/Login";
 import ModalLogout from "../components/ModalLogout";
+import ModalNavigation from "../components/ModalNavigation";
 
 function Layout() {
   const data = useLoaderData();
   const [selectedDate, setSelectedDate] = useState(formatDate(0));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [modalAddress, setModalAddress] = useState("");
   const [listView, setListView] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,15 @@ function Layout() {
           <div className="m-auto flex flex-col text-center md:max-w-sm">
             <Navbar />
             <div className="mb-20">
-              <Outlet context={{ selectedDate, listView, setListView, data }} />
+              <Outlet
+                context={{
+                  data,
+                  selectedDate,
+                  setModalAddress,
+                  listView,
+                  setListView,
+                }}
+              />
             </div>
             <NavMenu
               setSelectedDate={setSelectedDate}
@@ -37,6 +47,7 @@ function Layout() {
             />
           </div>
           <ModalLogout />
+          <ModalNavigation modalAddress={modalAddress} />
         </>
       ) : (
         <div className="flex h-screen flex-col justify-center text-center">

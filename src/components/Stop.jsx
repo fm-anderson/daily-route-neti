@@ -4,7 +4,7 @@ import ExpandCollapse from "./ExpandCollapse";
 import Actions from "./Actions";
 import Card from "./Card";
 
-function Stop({ displayIndex, listView, ...item }) {
+function Stop({ displayIndex, listView, setModalAddress, setCopied, ...item }) {
   const [isChecked, setIsChecked] = useState(false);
   const isSameDay = handleSameDay([item], handleServices);
 
@@ -15,7 +15,12 @@ function Stop({ displayIndex, listView, ...item }) {
   return (
     <>
       {!isChecked && (
-        <Actions displayIndex={displayIndex} listView={listView} {...item} />
+        <Actions
+          displayIndex={displayIndex}
+          listView={listView}
+          setModalAddress={setModalAddress}
+          {...item}
+        />
       )}
       {!listView && (
         <div
@@ -41,7 +46,7 @@ function Stop({ displayIndex, listView, ...item }) {
           </div>
 
           <div className={`collapse-content ${isSameDay && "bg-accent"}`}>
-            <Card {...item} />
+            <Card setCopied={setCopied} {...item} />
           </div>
         </div>
       )}
