@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 
 async function layoutLoader() {
   try {
-    const response = await fetch(import.meta.env.VITE_BASE_URL2);
+    const response = await fetch(import.meta.env.VITE_BASE_URL);
 
     if (!response.ok) {
       console.error("HTTP Error: ", response.status);
