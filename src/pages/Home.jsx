@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <div>
-      <Overview />
+      <Overview setCopied={setCopied} />
       {copied && <ToastAlert />}
       {filteredData.length === 0 ? (
         <div className="mt-6 flex h-96 items-center justify-center">

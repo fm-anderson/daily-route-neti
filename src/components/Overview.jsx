@@ -6,9 +6,11 @@ import {
   handleServices,
   createMapsRoute,
   itemsCount,
+  copyToClipboard,
+  formatForWhatsApp,
 } from "../utils/helper";
 
-function Overview() {
+function Overview({ setCopied }) {
   const { selectedDate, listView, setListView, data } = useOutletContext();
   const [isSameDay, setIsSameDay] = useState(false);
   const filteredData = data.filter((item) => item.date === selectedDate);
@@ -18,6 +20,11 @@ function Overview() {
 
   const toggleView = () => {
     setListView((prevListView) => !prevListView);
+  };
+
+  const copyRoute = () => {
+    const whatsappFormattedText = formatForWhatsApp(filteredData);
+    copyToClipboard(whatsappFormattedText, setCopied);
   };
 
   useEffect(() => {
@@ -40,14 +47,23 @@ function Overview() {
             </p>
           )}
         </span>
-        <a
-          href={mapsRoute}
-          target="_blank"
-          className="text-md badge badge-ghost bg-secondary px-4 py-2 tracking-wider text-white no-underline"
-        >
-          {`Route: ${selectedDate}`}
-        </a>
+        <span className="flex gap-1">
+          <a
+            href={mapsRoute}
+            target="_blank"
+            className="text-md badge badge-ghost bg-secondary px-4 py-2 tracking-wider text-white no-underline"
+          >
+            {`Route: ${selectedDate}`}
+          </a>
+          <button
+            className="text-md badge badge-ghost bg-emerald-600 px-2 py-2 text-white"
+            onClick={() => copyRoute()}
+          >
+            W
+          </button>
+        </span>
       </div>
+
       <div className="mx-1 grid grid-cols-2 gap-3">
         <Stats value={`${fixedMountCount} Fixed Mount`} />
         <Stats value={`${cordMaskingCount} Cord Masking`} />

@@ -94,3 +94,23 @@ export function abbreviateName(name) {
   }
   return name;
 }
+
+export function formatForWhatsApp(data) {
+  return data
+    .map((item) => {
+      return `${item.name} - ${item.phone}\n*${item.date}, ${item.time}*\n${
+        item.address
+      }\n${item.service.replace(/, /g, "\n")}\n*${item.payment}*\n---\n`;
+    })
+    .join("\n");
+}
+
+export async function copyToClipboard(text, setterFunction) {
+  try {
+    setterFunction(true);
+    await navigator.clipboard.writeText(text);
+    setTimeout(() => setterFunction(false), 700);
+  } catch (err) {
+    console.error("Failed to copy: ", err);
+  }
+}

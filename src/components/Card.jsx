@@ -1,19 +1,17 @@
 import { svgPaths } from "../utils/consts";
-import { abbreviateName, handleServices } from "../utils/helper";
+import {
+  abbreviateName,
+  copyToClipboard,
+  handleServices,
+} from "../utils/helper";
 import SvgWrapper from "./SvgWrapper";
 
 function Card({ setCopied, ...item }) {
   let services = handleServices(item.service);
   services = services.filter((service) => service.toLowerCase() !== "same day");
 
-  const copyToClipboard = async (text) => {
-    try {
-      setCopied(true);
-      await navigator.clipboard.writeText(text);
-      setTimeout(() => setCopied(false), 700);
-    } catch (err) {
-      console.error("Failed to copy: ", err);
-    }
+  const handleCopy = (text) => {
+    copyToClipboard(text, setCopied);
   };
 
   return (
@@ -23,7 +21,7 @@ function Card({ setCopied, ...item }) {
           <p className="font-bold">
             {`${abbreviateName(item.name)} -`} <span>{item.phone}</span>
           </p>
-          <span onClick={() => copyToClipboard(item.phone)}>
+          <span onClick={() => handleCopy(item.phone)}>
             <SvgWrapper pathData={svgPaths.copy} size={6} />
           </span>
         </span>
@@ -32,10 +30,7 @@ function Card({ setCopied, ...item }) {
 
         <span className="flex justify-between text-sm">
           {item.address}
-          <span
-            className="opacity-60"
-            onClick={() => copyToClipboard(item.address)}
-          >
+          <span className="opacity-60" onClick={() => handleCopy(item.address)}>
             <SvgWrapper pathData={svgPaths.copy} size={6} />
           </span>
         </span>
@@ -55,7 +50,7 @@ function Card({ setCopied, ...item }) {
             </a>
           </p>
           <span
-            onClick={() => copyToClipboard(item.invoice)}
+            onClick={() => handleCopy(item.invoice)}
             className="text-secondary"
           >
             <SvgWrapper pathData={svgPaths.copy} size={6} />
