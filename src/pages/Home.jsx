@@ -6,14 +6,14 @@ import { useState } from "react";
 
 function Home() {
   const { selectedDate, listView, data, setModalAddress } = useOutletContext();
-  const filteredData = data.filter((item) => item.date === selectedDate);
+  const filteredData = data?.filter((item) => item.date === selectedDate);
   const [copied, setCopied] = useState(false);
 
   return (
     <div>
       <Overview setCopied={setCopied} />
       {copied && <ToastAlert />}
-      {filteredData.length === 0 ? (
+      {filteredData?.length === 0 ? (
         <div className="mt-6 flex h-96 items-center justify-center">
           <p className="text-2xl font-semibold">
             No jobs scheduled for {selectedDate}.
@@ -21,7 +21,7 @@ function Home() {
         </div>
       ) : (
         <div className="mx-1 mt-6 flex flex-col gap-3">
-          {filteredData.map((item, index) => (
+          {filteredData?.map((item, index) => (
             <Stop
               key={item.index}
               displayIndex={index + 1}

@@ -31,7 +31,7 @@ export function formatDate(offset) {
 }
 
 export function handleSameDay(data) {
-  return data.some((item) => {
+  return data?.some((item) => {
     const services = lowercaseServices(item.service);
     return services.includes("same day");
   });
@@ -43,7 +43,7 @@ export function itemsCount(data) {
   let cordMaskingCount = 0;
   let milesCount = 0;
 
-  data.forEach((item) => {
+  data?.forEach((item) => {
     const services = lowercaseServices(item.service);
 
     if (services.includes("fixed mount")) {
@@ -81,7 +81,7 @@ export function createMapsRoute(data) {
     return address.replace(/\s\(.*?\)/, "").replace(/\s/g, "+");
   };
 
-  const route = data.map((item) => formatAddress(item.address)).join("/");
+  const route = data?.map((item) => formatAddress(item.address)).join("/");
 
   return baseUrl + startingAddress + "/" + route;
 }
@@ -97,7 +97,7 @@ export function abbreviateName(name) {
 
 export function formatForWhatsApp(data) {
   return data
-    .map((item) => {
+    ?.map((item) => {
       return `${item.name} - ${item.phone}\n*${item.date}, ${item.time}*\n${
         item.address
       }\n${item.service.replace(/, /g, "\n")}\n*${item.payment}*\n---\n`;

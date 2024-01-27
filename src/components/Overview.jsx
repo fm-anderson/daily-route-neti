@@ -13,7 +13,7 @@ import {
 function Overview({ setCopied }) {
   const { selectedDate, listView, setListView, data } = useOutletContext();
   const [isSameDay, setIsSameDay] = useState(false);
-  const filteredData = data.filter((item) => item.date === selectedDate);
+  const filteredData = data?.filter((item) => item.date === selectedDate);
   const mapsRoute = createMapsRoute(filteredData);
   const { fixedMountCount, fullMotionCount, cordMaskingCount, milesCount } =
     itemsCount(filteredData);
@@ -47,7 +47,7 @@ function Overview({ setCopied }) {
             </p>
           )}
         </span>
-        {filteredData.length > 0 && (
+        {filteredData?.length > 0 && (
           <span className="flex gap-1">
             <a
               href={mapsRoute}

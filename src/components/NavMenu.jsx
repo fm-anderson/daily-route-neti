@@ -7,7 +7,7 @@ function NavMenu({ setSelectedDate, selectedDate }) {
 
   const isDateEmpty = (date) => {
     const formattedDate = formatDate(date);
-    return !data.some((item) => item.date === formattedDate);
+    return !data?.some((item) => item.date === formattedDate);
   };
 
   return (
